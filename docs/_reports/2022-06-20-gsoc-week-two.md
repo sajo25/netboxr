@@ -64,6 +64,14 @@ Selecting Input Gene Lists for use with NetBox
 - Finish and test neboxr Galaxy R file via command line
 - Start working on netboxr Galaxy XML file
 - Learn about Galaxy tool deployment
+- number of iterations for local and global null models? What does the number of genes mean? Plotting – should we let users choose their own dimensions? Making everything as customizable as possible but avoiding giving users decision fatigue
+What should be, at minimum, the preselected Galaxy tool output?
+For the cagsr package, should I start uploading the datasets?
+For the R code, short form of args? Necessary or not? Also, having different names?
+Should graphical output be pdf?
+
+Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 --globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE --moduleMembership TRUE --nodeType TRUE
+
 
 **Discussion points for next meeting**
 - What should the input options for the Galaxy tool be? Give multiple options vs force specific format? 
