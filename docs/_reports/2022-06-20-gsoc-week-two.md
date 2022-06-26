@@ -72,6 +72,25 @@ Should graphical output be pdf?
 
 Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 --globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE --moduleMembership TRUE --nodeType TRUE
 
+```{r netboxrExampleGeneConnector, fig.width=12, fig.height=12}
+
+# Set up R error handling to go to stderr
+options(show.error.messages=F,
+        error=function(){cat(geterrmessage(),file=stderr());q("no",1,F)})
+
+# Avoid crashing Galaxy with an UTF8 error on German LC settings
+loc <- Sys.setlocale("LC_MESSAGES", "en_US.UTF-8")
+
+# Import required libraries and data
+suppressPackageStartupMessages({
+  library(optparse)
+  library(netboxr)
+  library(igraph)
+  library(RColorBrewer)
+})
+
+```
+
 
 **Discussion points for next meeting**
 - What should the input options for the Galaxy tool be? Give multiple options vs force specific format? 
