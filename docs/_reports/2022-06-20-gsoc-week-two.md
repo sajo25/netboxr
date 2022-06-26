@@ -47,24 +47,29 @@ Statistical Significance of Discovered Network
     Global Network Null Model
     Local Network Null Model
 Write NetBox Output to Files
+
 Term Enrichment in Modules using Gene Ontology (GO) Analysis
 Alternative Pathway Data   
     Using Tabular Simple Interaction Format (SIF)-Based Network Data
     Using PaxtoolsR for Pathway Commons Data
 Selecting Input Gene Lists for use with NetBox
++ weights
 
 **Remaining tasks**
+- Weekly email for report?
+- On Monday, ask supervisors whether Go Analysis should be part of Galaxy tool
 - Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
 - Does R output show up anywhere on Galaxy? 
-- Cutoff value - selected via drop-down menu, slider? How many options
+- Cutoff value - selected via drop-down menu, slider? How many options?
+- Finish and test neboxr Galaxy R file via command line
+- Start working on netboxr Galaxy XML file
+- Learn about Galaxy tool deployment
 
 **Discussion points for next meeting**
 - What should the input options for the Galaxy tool be? Give multiple options vs force specific format? 
-- 
 - How would the input change if the list of genes is generated using method described in vignette (cgdsr package)?
 - Plotting for local network null model - histogram?
-- Should we also generate a meta file containing summary of selected parameteers and R (console) output? What else would that file contain?
-- Separate options T/F for analysis and plots? Eg. local null model
-
+- Should we also generate a meta file containing summary of selected parameteers and relevant R (console) output? What else would that file contain?
+- Separate options T/F for analysis and plots? Eg. local null model. How many options to give users?
 
 
