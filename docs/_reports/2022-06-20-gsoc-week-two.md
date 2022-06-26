@@ -5,6 +5,8 @@ tags: gsoc
 author: Sara J
 ---
 
+**Tasks**
+
 1. **[Fix remaining GitHub Actions bugs](https://github.com/mil2041/netboxr/issues/7)**
     Status: **In progress**
     Branch: **None**
@@ -31,3 +33,38 @@ author: Sara J
     Status: **Thursday**
     Branch: **None**
     PR: **None**
+
+
+Load Human Interactions Network (HIN) network
+Load altered gene list
+Map altered gene list on HIN network
+- Implemented option for different community discovery methods and resolution
+- Implemented option for multiple outputs (community membership, node type, etc.)
+- Implemented statistical analysis options
+
+Alternative Module Discovery Methods
+Statistical Significance of Discovered Network
+    Global Network Null Model
+    Local Network Null Model
+Write NetBox Output to Files
+Term Enrichment in Modules using Gene Ontology (GO) Analysis
+Alternative Pathway Data   
+    Using Tabular Simple Interaction Format (SIF)-Based Network Data
+    Using PaxtoolsR for Pathway Commons Data
+Selecting Input Gene Lists for use with NetBox
+
+**Remaining tasks**
+- Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
+- Does R output show up anywhere on Galaxy? 
+- Cutoff value - selected via drop-down menu, slider? How many options
+
+**Discussion points for next meeting**
+- What should the input options for the Galaxy tool be? Give multiple options vs force specific format? 
+- 
+- How would the input change if the list of genes is generated using method described in vignette (cgdsr package)?
+- Plotting for local network null model - histogram?
+- Should we also generate a meta file containing summary of selected parameteers and R (console) output? What else would that file contain?
+- Separate options T/F for analysis and plots? Eg. local null model
+
+
+
