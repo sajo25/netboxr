@@ -5,7 +5,7 @@ tags: gsoc
 author: Sara J
 ---
 
-**Tasks**
+## Tasks
 
 1. **[Fix remaining GitHub Actions bugs](https://github.com/mil2041/netboxr/issues/7)**
     Status: **In progress**
@@ -34,6 +34,7 @@ author: Sara J
     Branch: **None**
     PR: **None** 
 
+## Progress report
 
 Load Human Interactions Network (HIN) network
 Load altered gene list
