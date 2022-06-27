@@ -70,7 +70,11 @@ For the cagsr package, should I start uploading the datasets?
 For the R code, short form of args? Necessary or not? Also, having different names?
 Should graphical output be pdf?
 
+```
 Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 --globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE --moduleMembership TRUE --nodeType TRUE
+```
+
+
 
 ```
 # Set up R error handling to go to stderr
@@ -135,13 +139,6 @@ results <- geneConnector(geneList = geneList, networkGraph = graphReduced,
                          directed = FALSE, pValueAdj = "BH", pValueCutoff = threshold,
                          resolutionParam = resolutionParam, #weightsInput = weightsInput,
                          communityMethod = communityMethod, keepIsolatedNodes = FALSE)
-edges <- results$netboxOutput
-interactionType <- unique(edges[, 2])
-interactionTypeColor <- brewer.pal(length(interactionType), name = "Spectral")
-edgeColors <- data.frame(interactionType, interactionTypeColor, stringsAsFactors = FALSE)
-colnames(edgeColors) <- c("INTERACTION_TYPE", "COLOR")
-netboxGraphAnnotated <- annotateGraph(netboxResults = results, edgeColors =
-                                        edgeColors, directed = FALSE, linker = TRUE)
 
 # Check the p-value of the selected linker
 linkerDF <- results$neighborData
@@ -162,6 +159,14 @@ if (localModel) {
 ## Output
 # Plot the edge annotated graph
 if (networkPlot) {
+
+  edges <- results$netboxOutput
+  interactionType <- unique(edges[, 2])
+  interactionTypeColor <- brewer.pal(length(interactionType), name = "Spectral")
+  edgeColors <- data.frame(interactionType, interactionTypeColor, stringsAsFactors = FALSE)
+  colnames(edgeColors) <- c("INTERACTION_TYPE", "COLOR")
+  netboxGraphAnnotated <- annotateGraph(netboxResults = results, edgeColors =
+                                        edgeColors, directed = FALSE, linker = TRUE)
   pdf("network_plot.pdf", width=8)
   plot(results$netboxCommunity, netboxGraphAnnotated, layout = graph_layout,
        vertex.size = 10, vertex.shape = V(netboxGraphAnnotated)$shape, edge.color
