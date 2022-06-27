@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Two | Fixing remaining GitHub Actions bugs, detailed plan for Galaxy tool interface"
+title:  "Week Two | GitHub Actions bugs and Galaxy tool interface"
 tags: gsoc
 author: Sara J
 ---
@@ -10,7 +10,7 @@ author: Sara J
 1. **[Fix remaining GitHub Actions bugs](https://github.com/mil2041/netboxr/issues/7)**
     Status: **In progress**
     Branch: **None**
-        PR: **None**
+    PR: **None**
         
       1a. [Add tests to netboxr for existing examples](https://github.com/mil2041/netboxr/issues/22)
 
@@ -35,7 +35,6 @@ author: Sara J
     PR: **None** 
 
 ## Progress report
-# Progress report
 
 Load Human Interactions Network (HIN) network
 Load altered gene list
@@ -57,29 +56,8 @@ Alternative Pathway Data
 Selecting Input Gene Lists for use with NetBox
 + weights
 
-**Remaining tasks**
-- Weekly email for report?
-- On Monday, ask supervisors whether Go Analysis should be part of Galaxy tool
-- Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
-- Does R output show up anywhere on Galaxy? 
-- Cutoff value - selected via drop-down menu, slider? How many options?
-- Finish and test neboxr Galaxy R file via command line
-- Start working on netboxr Galaxy XML file
-- Learn about Galaxy tool deployment
-- number of iterations for local and global null models? What does the number of genes mean? Plotting – should we let users choose their own dimensions? Making everything as customizable as possible but avoiding giving users decision fatigue
-What should be, at minimum, the preselected Galaxy tool output?
-For the cagsr package, should I start uploading the datasets?
-For the R code, short form of args? Necessary or not? Also, having different names?
-Should graphical output be pdf?
 
-<img src = "https://user-images.githubusercontent.com/28693536/175982859-893f3b3e-e068-4a8a-99ae-b61458e2db25.png" width = "350" height = "350">
-
-```
-Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 
---globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE 
---moduleMembership TRUE --nodeType TRUE
-```
-
+<img src = "https://user-images.githubusercontent.com/28693536/175997315-48cddc0f-7ae1-4c59-9b56-ad866186a699.png" width = "350" height = "350">
 
 
 ```
@@ -217,6 +195,30 @@ if (nodeType) {
               row.names = FALSE)
 }
 ```
+
+
+```
+Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 
+--globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE 
+--moduleMembership TRUE --nodeType TRUE
+```
+
+
+**Remaining tasks**
+- Weekly email for report?
+- On Monday, ask supervisors whether Go Analysis should be part of Galaxy tool
+- Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
+- Does R output show up anywhere on Galaxy? 
+- Cutoff value - selected via drop-down menu, slider? How many options?
+- Finish and test neboxr Galaxy R file via command line
+- Start working on netboxr Galaxy XML file
+- Learn about Galaxy tool deployment
+- number of iterations for local and global null models? What does the number of genes mean? Plotting – should we let users choose their own dimensions? Making everything as customizable as possible but avoiding giving users decision fatigue
+What should be, at minimum, the preselected Galaxy tool output?
+For the cagsr package, should I start uploading the datasets?
+For the R code, short form of args? Necessary or not? Also, having different names?
+Should graphical output be pdf?
+
 
 
 **Discussion points for next meeting**
