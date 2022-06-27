@@ -16,7 +16,7 @@ author: Sara J
 2. **[Add methods for module size parametrization](https://github.com/mil2041/netboxr/issues)**
     Status: **In progress**
     Branch: **None**
-        PR: **None**
+    PR: **None**
         
 3. **[Fix cgdsr package issue](https://github.com/mil2041/netboxr/issues/14)**
     Status: **Complete**
@@ -33,6 +33,7 @@ author: Sara J
     Branch: **None**
     PR: **None** 
     
+## Progress report
     
 To fix the cgdsr package issue, a (temporary) solution I implemented in the netboxr vignette was removing any cgdsr-related code and uploading a table containing the identical cgdsr data ("vignette_data.txt") that I stored in the "inst" directory. 
 
