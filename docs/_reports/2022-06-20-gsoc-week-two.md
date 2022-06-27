@@ -36,10 +36,13 @@ author: Sara J
 
 ## Progress report
 
+ 
+
+
+Currently, the R script for the prototype Galaxy netboxr tool is able to 
 Load Human Interactions Network (HIN) network
 Load altered gene list
-Map altered gene list on HIN network
-- Implemented option for different community discovery methods and resolution
+map altered gene list on HIN network using (1) different community discovery methods, (2) resolution values, and 
 - Implemented option for multiple outputs (community membership, node type, etc.)
 - Implemented statistical analysis options
 
@@ -57,7 +60,7 @@ Selecting Input Gene Lists for use with NetBox
 + weights
 
 
-<img src = "https://user-images.githubusercontent.com/28693536/175997315-48cddc0f-7ae1-4c59-9b56-ad866186a699.png" width = "350" height = "350">
+<img width="451" alt="graph" src="https://user-images.githubusercontent.com/28693536/176018933-c558b184-6a0f-4558-adc2-e8e770529652.png">
 
 
 ```
@@ -202,7 +205,6 @@ Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "e
 --globalModel TRUE --localModel TRUE --networkPlot TRUE --outputSIF TRUE --neighborList TRUE 
 --moduleMembership TRUE --nodeType TRUE
 ```
-
 
 **Remaining tasks**
 - Weekly email for report?
