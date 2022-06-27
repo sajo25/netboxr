@@ -3,6 +3,13 @@
 
 @import "{{ site.theme }}";
 
-.page {
-  width: calc(100% - #{$right-sidebar-width-narrow});
+.wrapper {
+  width:960px;
+  margin:0 auto;
+}
+
+section {
+  width:600px;
+  float:right;
+  padding-bottom:50px;
 }
