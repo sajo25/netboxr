@@ -70,7 +70,7 @@ For the cagsr package, should I start uploading the datasets?
 For the R code, short form of args? Necessary or not? Also, having different names?
 Should graphical output be pdf?
 
-<img src = "https://user-images.githubusercontent.com/28693536/175982859-893f3b3e-e068-4a8a-99ae-b61458e2db25.png" width = "300" height = "600">
+<img src = "https://user-images.githubusercontent.com/28693536/175982859-893f3b3e-e068-4a8a-99ae-b61458e2db25.png" width = "500" height = "600">
 
 ```
 Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "ebc" --resolutionParam 3 
