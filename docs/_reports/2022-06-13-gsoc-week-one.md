@@ -33,7 +33,7 @@ author: Sara J
     Branch: **None**
     PR: **None** 
     
-## Progress report
+## Progress report 
     
 To fix the cgdsr package issue, a (temporary) solution I implemented in the netboxr vignette was removing any cgdsr-related code and uploading a table containing the identical cgdsr data ("vignette_data.txt") that I stored in the "inst" directory. 
 
