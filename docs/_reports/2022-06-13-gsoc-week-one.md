@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week One | Work on GitHub Actions and module parametrization"
+title:  "Week One | GitHub Actions and module parametrization"
 tags: gsoc
 author: Sara J
 ---
