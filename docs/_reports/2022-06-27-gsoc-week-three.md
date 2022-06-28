@@ -5,13 +5,6 @@ tags: gsoc
 author: Sara J
 ---
 
----
-layout: post
-title:  "Week Two | Fixing remaining GitHub Actions bugs, detailed plan for Galaxy tool interface"
-tags: gsoc
-author: Sara J
----
-
 **Tasks**
 
 1. **[Fix remaining GitHub Actions bugs](https://github.com/mil2041/netboxr/issues/7)**
