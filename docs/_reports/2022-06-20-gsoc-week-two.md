@@ -36,7 +36,15 @@ author: Sara J
 
 ## Progress report
 
+ **GitHub Actions bugs progress**
  
+ * Worked on integrating the resolution parameter for module size
+(Issue: LINK_TO_ISSUE, Pull Request: LINK, Code: LINK)
+* Finished GitHub Actions setup ... (Run: WORKING_RUN_LINK)
+* Finished ... (Issue: LINK)
+* Added ... (Issue: LINK)
+ 
+ https://github.com/sajo25/netboxr/runs/7068714025?check_suite_focus=true
 
 
 Currently, the R script for the prototype Galaxy netboxr tool is able to 
@@ -212,7 +220,6 @@ Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "e
 - Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
 - Does R output show up anywhere on Galaxy? 
 - Cutoff value - selected via drop-down menu, slider? How many options?
-- Finish and test neboxr Galaxy R file via command line
 - Start working on netboxr Galaxy XML file
 - Learn about Galaxy tool deployment
 - number of iterations for local and global null models? What does the number of genes mean? Plotting – should we let users choose their own dimensions? Making everything as customizable as possible but avoiding giving users decision fatigue
@@ -220,7 +227,6 @@ What should be, at minimum, the preselected Galaxy tool output?
 For the cagsr package, should I start uploading the datasets?
 For the R code, short form of args? Necessary or not? Also, having different names?
 Should graphical output be pdf?
-
 
 
 **Discussion points for next meeting**
