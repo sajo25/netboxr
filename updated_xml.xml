@@ -1,0 +1,142 @@
+<tool id="netboxr_tool" name="NetBox" version="1.6.0">
+<!-- A simple description of the tool that will appear in the tool
+panel in Galaxy. -->
+<description> netboxr enables automated discovery of biological process
+modules by network analysis.</description>
+<!-- Handles exit codes in Galaxy. -->
+<stdio>
+<exit_code range="1:" />
+</stdio>
+<requirements>
+<requirement type="package" version="4.0.0">R</requirement>
+<requirement type="package" version="1.2.4.1">igraph</requirement>
+<requirement type="package" version="1.6.0">netboxr</requirement>
+<requirement type="package"
+version="1.6.0">r-optparse</requirement>
+</requirements>
+<command><![CDATA[
+Rscript.exe '$__tool_directory__/netboxr.R' --geneList $gene_list
+--cutoff $cutoff --communityMethod $communityMethod --resolutionParam $resolutionParam --globalModel $globalModel --localModel $localModel --networkPlot $networkPlot --outputSIF $outputSIF --neighborList '$neighborList' --moduleMembership ‘$moduleMembership’ --nodeType ’$nodeType’
+]]>
+</command>
+<inputs>
+<param name="gene_list" type="text" label="Gene list" help="A
+tab-delimited text file that contains a list of genes of interest"/>
+<param name="cutoff" type="select" label="P-Value Cut-Off"
+help="The corrected p-value (or q-value) cut-off to apply for the graph
+output. Default: 0.05">
+<option value="1.0"/>
+<option value="0.1"/>
+<option value="0.05"/>
+<option value="0.01" selected="0.05"/>
+<param name="communityMethod" type="select" label="Community detection method" help="Community detection methods include using edge betweenness score ("ebc"), leading eigenvector method ("lec"), Louvain method ("louvain"), or Leiden method ("leiden"). Default: ebc">
+<option value="ebc"/>
+<option value="lev"/>
+<option value="louvain"/>
+<option value="leiden" selected="ebc"/>
+<param name="networkPlot" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Network plot" help="Output the
+annotated graph of netboxr output. Default: Yes"/>
+<param name="outputSIF" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Network plot" help="Output the
+annotated graph of netboxr output. Default: Yes"/>
+<param name="neighborList" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Neighbor List" help="Output a table containing the information of all neighbor nodes. Default: Yes"/>
+<param name="moduleMembership" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Module membership" help="Output a table containing the information of all neighbor nodes. Default: Yes"/>
+<param name="nodeType" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Node type" help="Output a table
+containing the information of all neighbor nodes. Default: Yes"/>
+</param>
+</inputs>
+<outputs>
+<data name="output_pdf" format="pdf"
+from_work_dir="network_plot.pdf" label="${tool.name} on ${on_string}:
+Network plot">
+<filter>output_pdf is True</filter>
+</data>
+<data name="output_pdf" format="pdf"
+from_work_dir="network_plot.pdf" label="${tool.name} on ${on_string}:
+Network plot">
+<filter>outputSIF is True</filter>
+</data>
+<data name="output_neighbor" format="tabular"
+from_work_dir="neighbor_data.txt" label="${tool.name} on ${on_string}:
+Neighbor data">
+<filter>output_neighbor is True</filter>
+</data>
+<data name="moduleMembership" format="pdf"
+from_work_dir="network_plot.pdf" label="${tool.name} on ${on_string}:
+Network plot">
+<filter>output_pdf is True</filter>
+</data>
+<data name="nodeType" format="pdf"
+from_work_dir="network_plot.pdf" label="${tool.name} on ${on_string}:
+Network plot">
+<filter>output_pdf is True</filter>
+</data>
+</outputs>
+<tests>
+<test>
+<param name="geneList"
+value="/galaxy/tools/mytools/test_data/geneList.txt"/>
+<param name="cutoff" value="0.05"/>
+<param name="networkPlot" value="True"/>
+<param name="neighborList" value="True"/>
+<output name="network_plot"
+file="/galaxy/tools/mytools/test_data/network_plot.pdf"
+compare="sim_size"/>
+<output name="neighborList"
+file="/galaxy/tools/mytools/test_data/neighbor_data.txt" >
+<assert_contents>
+<has_text_matching expression="idx name
+localDegree globalDegree pValueRaw oddsRatio pValueFDR" />
+</assert_contents>
+</output>
+</test>
+</tests>
+<help><![CDATA[
+NetBox is a network-based approach that combines prior knowledge with a
+network clustering algorithm. The algorithm allows for the identification
+of functional modules and allows for combining multiple data types, such as
+mutations and copy number alterations. NetBox performs network analysis on
+human interaction networks, and comes pre-loaded with a Human Interaction
+Network (HIN) derived from four literature curated data sources, including
+the Human Protein Reference Database (HPRD), Reactome, NCI-Nature Pathway
+Interaction (PID) Database, and the MSKCC Cancer Cell Map.
+-----
+**Inputs**
+**Gene list**
+A tab-delimited text file that contains a list of genes of interest is
+required.
+Example of text file contents: EGFR TP53 ACTB GAPDH
+**Cutoff value**
+The corrected p-value (or q-value) cut-off to apply for the graph output.
+The default p-value is 0.05.
+**Community detection method**
+The corrected p-value (or q-value) cut-off to apply for the graph output.
+The default p-value is 0.05.
+**Resolution value**
+The corrected p-value (or q-value) cut-off to apply for the graph output.
+The default p-value is 0.05.
+**Outputs**
+* A PDF with a plot of the edge annotated graph (optional)
+* A text file with tabular data containing information of all neighbor
+nodes (optional) SIF
+* A text file with tabular data containing information of all neighbor
+nodes (optional)
+* A text file with tabular data containing information of all neighbor
+nodes (optional) module membership
+* A text file with tabular data containing information of all neighbor
+nodes (optional) node type
+-----
+Wrapper released under [type of license]. Copyright (c) 2021 Augustin Luna
+.. _netboxr:
+https://www.bioconductor.org/packages/release/bioc/html/netboxr.html
+.. _study:
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0234669
+]]></help>
+<citations>
+<citation type="doi">10.1371/journal.pone.0234669</citation>
+</citations>
+</tool>
