@@ -25,7 +25,7 @@ author: Sara J
 
 ## Progress report
 
-I've created a more advanced version of the netboxr galaxy tool with more analysis and output options that I've tested using the data from the netboxr vignette [(commit)](https://github.com/mil2041/netboxr/commit/73ccc475ded90470c73fce84d704bc4a8a5a8627) for a better comparison. Unlike the prototype, the newest version accepts newline-delimited, as opposed to tab-delimited, files as input. Screenshots of the tool interface and output can be found below:
+I've created a more advanced version of the netboxr Galaxy tool with more analysis and output options [(commit)](https://github.com/mil2041/netboxr/commit/73ccc475ded90470c73fce84d704bc4a8a5a8627) that I've tested using the data from the netboxr vignette for a better comparison. Unlike the prototype, the newest version accepts newline-delimited, as opposed to tab-delimited, files as input. Screenshots of the tool interface and output can be found below:
 
 <img width="873" alt="galaxy1" src="https://user-images.githubusercontent.com/28693536/178962816-f7ce4a49-a715-457a-bc98-370f1d022dc1.PNG">
 <img width="867" alt="galaxy2" src="https://user-images.githubusercontent.com/28693536/178962849-da159d72-371c-40dd-8be6-e927e746cef4.PNG">
