@@ -5,7 +5,7 @@ tags: gsoc
 author: Sara J
 ---
 
-**Tasks**
+## Tasks
         
 1. **Work on Galaxy tool development**
     Status: **In progress**
@@ -23,7 +23,7 @@ author: Sara J
     PR: **None** 
 
 
-**Progress report**
+## Progress report
 
 I've created a more advanced version of the netboxr galaxy tool with more analysis and output options that I've tested using the data from the netboxr vignette [(commit)](https://github.com/mil2041/netboxr/commit/73ccc475ded90470c73fce84d704bc4a8a5a8627) for a better comparison. Unlike the prototype, the newest version accepts newline-delimited, as opposed to tab-delimited, files as input. Screenshots of the tool interface and output can be found below:
 
