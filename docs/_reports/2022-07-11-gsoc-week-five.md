@@ -60,3 +60,5 @@ Iterations - help
 Fix number of genes, find out why
 Sink command
 How is it running, what is it doing
+Resolution not more than 1 
+Terminal output text file,
