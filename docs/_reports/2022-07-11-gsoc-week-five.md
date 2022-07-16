@@ -51,3 +51,12 @@ dat <- read.table(system.file(paste("vignette_data_", gene, ".txt", sep = ""), p
 
 This is the [commit](https://github.com/mil2041/netboxr/commit/3066e4e62b5a64eaa62062410edb2b2ceb1f352e) and the most recent GitHub Actions [run](https://github.com/sajo25/netboxr/actions/runs/2672929063) for the above changes.
 
+Changing intput to text (like cutoff value)
+Community detection method "lev" doesn't work, figure out why
+Netboxr beta/alpha testing draft
+Try without virtual environment
+Change plotting parameters
+Iterations - help
+Fix number of genes, find out why
+Sink command
+How is it running, what is it doing
