@@ -23,11 +23,11 @@ after you make pull request-->
 </command>
 <inputs>
 <param name="gene_list" type="data" format=".txt" label="Gene list" help="A
-tab-delimited text file that contains a list of genes of interest"/>
-<param argument="--cutoff" type="text" label="P-Value Cut-Off"
+newline-delimited text file that contains a list of genes of interest"/>
+<param name="cutoff" type="text" label="P-Value Cut-Off"
 help="The corrected p-value (or q-value) cut-off to apply for the graph
 output. Default: 0.05"/>
-<param argument="--community" type="select" label="Community detection method" help="Community detection methods include using edge betweenness score (ebc), leading eigenvector method (lec), Louvain method (louvain), or Leiden method (leiden). Default: ebc">
+<param name="community" type="select" label="Community detection method" help="Community detection methods include edge betweenness score (EBC), leading eigenvector method (LEC), Louvain method (LOUV), or Leiden method (LEID). Default: EBC">
 <option value="ebc">EBC</option>
 <option value="lev">LEV</option>
 <option value="louvain">LOUV</option>
@@ -35,29 +35,32 @@ output. Default: 0.05"/>
 </param>
 <!-- <param argument="- -resolutionParam" type="text" label="Resolution parameter"
 help="Higher resolution results in more communities. Default: 1"/> -->
-<param argument="--globalModel" type="boolean" truevalue="True"
-falsevalue="False" checked="True" label="Global model" help="Perform global model analysis. Default: Yes"/>
-<param argument="--globalIterations" type="text" truevalue="True"
-falsevalue="False" checked="True" label="Global model iterations" help="Global model iterations. Recommended: 1000"/>
-<param argument="--globalNumber" type="text" truevalue="True"
-falsevalue="False" checked="True" label="Global model number of genes" help="Global model number of genes."/>
-<param argument="--localModel" type="boolean" truevalue="True"
-falsevalue="False" checked="True" label="Local model" help="Perform local model analysis. Default: Yes"/>
-<param argument="--localIterations" type="text" truevalue="True"
-falsevalue="False" checked="True" label="Local model iterations" help="Local model iterations. Recommended: 1000"/>
-<param argument="--networkPlot" type="boolean" truevalue="True"
+<param name="globalModel" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Global network null model" help="Perform global network null model analysis. The global network null model calculates the empirical
+p-value as the number of times (over a set of iterations) the size of the largest connected component (the giant component) in the network
+coming from the same number of randomly selected genes equals or exceeds the size of the largest
+connected component in the observed network. Default: Yes"/>
+<param name="globalIterations" type="text" truevalue="True"
+falsevalue="False" checked="True" label="Global network null model iterations" help="Global network null model iterations. Recommended: 1000"/>
+<param name="globalNumber" type="text" truevalue="True"
+falsevalue="False" checked="True" label="Global network model number of genes" help="Global network null model number of genes."/>
+<param name="localModel" type="boolean" truevalue="True"
+falsevalue="False" checked="True" label="Local network null model" help="Perform local network null model analysis. The local network null model evaluates
+the deviation of modularity in the observed network from modularity distribution in the random network. Default: Yes"/>
+<param name="localIterations" type="text" truevalue="True"
+falsevalue="False" checked="True" label="Local network null model iterations" help="Local network null model iterations. Recommended: 1000"/>
+<param name="networkPlot" type="boolean" truevalue="True"
 falsevalue="False" checked="True" label="Network plot" help="Output the
 annotated graph of netboxr output. Default: Yes"/>
-<param argument="--plotWidth" type="text" label="Network plot width" help="Output the
-annotated graph of netboxr output."/>
-<param argument="--outputSIF" type="boolean" truevalue="True"
+<param name="plotWidth" type="text" label="Network plot width" help="Plot width. Recommended: 9"/>
+<param name="outputSIF" type="boolean" truevalue="True"
 falsevalue="False" checked="True" label="Network in SIF format" help="Output the
-annotated graph of netboxr output. Default: Yes"/>
-<param argument="--neighborList" type="boolean" truevalue="True"
+network in SIF format. Default: Yes"/>
+<param name="neighborList" type="boolean" truevalue="True"
 falsevalue="False" checked="True" label="Neighbor list" help="Output a table
 containing the information of all neighbor nodes. Default: Yes" />
-<param argument="--modmem" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Module membership" help="or nodes. Default: Yes"/>
-<param argument="--nt" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Node type" help="Output a table containing the information of node types. Default: Yes"/>
+<param name="modmem" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Module membership" help="Output a table containing the identified pathway module numbers. Default: Yes"/>
+<param name="nt" type="boolean" truevalue="True" falsevalue="False" checked="True" label="Node type" help="Output a table containing the information of node types. Default: Yes"/>
 </inputs>
 <outputs>
 <data name="output_pdf" format="pdf"
@@ -111,10 +114,35 @@ value="/home/ubuntu/galaxytools/tools/netboxr/test-data/netbox2010_data.txt"/>
 <param name="neighborList" value="True"/>
 <param name="modmem" value="True"/>
 <param name="nt" value="True"/>
+<output name="output_pdf" value="network_plot.pdf" compare="sim_size" />
+<output name="localModel_pdf" value="localModel_histogram.pdf" compare="sim_size" />
+<output name="output_sif"
+file="/home/ubuntu/galaxytools/tools/netboxr/test-data/network.sif" >
+<assert_contents>
+<has_text_matching expression="CBL\tPP\tPIK3R1" />
+<has_text_matching expression="PIK3R1\tIN_SAME_COMPONENT\tAGAP2" />
+</assert_contents>
+</output>
 <output name="output_neighbor"
 file="/home/ubuntu/galaxytools/tools/netboxr/test-data/neighbor_data.txt" >
 <assert_contents>
-<has_text_matching expression="localDegree" />
+<has_text_matching expression="idx\tname\tlocalDegree\tglobalDegree\tpValueRaw\toddsRatio\tpValueFDR" />
+<has_text_matching expression="1712\tCRK\t11\t81\t2.39208791593171e-05\t1.70873218314362\t0.0186673141177578" />
+<has_text_matching expression="6187\tRPS27\t2\t186\t0.975923212389053\t-0.825808759394024\t0.975923212389053" />
+</assert_contents>
+</output>
+<output name="moduleMembership"
+file="/home/ubuntu/galaxytools/tools/netboxr/test-data/community.membership.txt" >
+<assert_contents>
+<has_text_matching expression="CBL\t1" />
+<has_text_matching expression="CCT6A\t10" />
+</assert_contents>
+</output>
+<output name="nodeType"
+file="/home/ubuntu/galaxytools/tools/netboxr/test-data/nodeType.txt" >
+<assert_contents>
+<has_text_matching expression="CDKN2B\tcandidate" />
+<has_text_matching expression="PTPN11\tlinker" />
 </assert_contents>
 </output>
 </test>
@@ -132,7 +160,7 @@ Interaction (PID) Database, and the MSKCC Cancer Cell Map.
 **Inputs**
 **Gene list**
 A tab-delimited text file that contains a list of genes of interest is
-required.
+required.\n
 Example of text file contents: EGFR TP53 ACTB GAPDH
 **Cutoff value**
 The corrected p-value (or q-value) cut-off to apply for the graph output.

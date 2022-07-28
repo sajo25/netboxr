@@ -15,7 +15,7 @@ data(netbox2010)
 option_list <- list(
   make_option("--geneList", type="character", help="Tab-delimited list of genes of interest"),
   make_option("--cutoff", type="double", help="p-value cutoff value"),
-  make_option("--community", type="character", help="commumanity detection method"),
+  make_option("--community", type="character", help="community detection method"),
   #make_option("--resolutionParam", type="integer", help="community size"),
   #make_option("--networkType", type="character", help="edge weights"),
   #make_option("--weightsInput", type="", help="edge weights"),
@@ -27,7 +27,7 @@ option_list <- list(
   make_option("--localModel", type="logical", help="Used to assess the network modularity in
               the identified network compared with random re-wired network"),
   make_option("--localIterations", type="integer", help="Local model iterations"),
-  
+
   make_option("--networkPlot", type="logical", help="Plot of edge-annotated netboxr graph"),
   make_option("--plotWidth", type="integer", help="Plot width"),
   make_option("--outputSIF", type="logical", help="NetBox algorithm output in SIF format"),
@@ -60,15 +60,16 @@ nt = args$nt
 
 #fileConn = tempfile(pattern="metadata", fileext=".txt")
 #zz = file(fileConn, open="w")
-#sink(zz, type="message")
+sink("metadata.txt")
+sink(stdout(), type="message")
 # Network analysis as described in netboxr vignette
 sifNetwork <- netbox2010$network
 graphReduced <- networkSimplify(sifNetwork, directed = FALSE)
 threshold <- cutoff
 results <- print(geneConnector(geneList = geneList, networkGraph = graphReduced,
-                               directed = FALSE, pValueAdj = "BH", pValueCutoff = threshold,
-                               #resolutionParam = resolutionParam, weightsInput = weightsInput,
-                               communityMethod = community, keepIsolatedNodes = FALSE))
+                         directed = FALSE, pValueAdj = "BH", pValueCutoff = threshold,
+                         #resolutionParam = resolutionParam, weightsInput = weightsInput,
+                         communityMethod = community, keepIsolatedNodes = FALSE))
 
 # Check the p-value of the selected linker
 linkerDF <- results$neighborData
@@ -79,17 +80,19 @@ graph_layout <- layout_with_fr(results$netboxGraph)
 if (globalModel) {
   globalTest <- globalNullModel(netboxGraph = results$netboxGraph, networkGraph = graphReduced,
                                 iterations = globalIterations, numOfGenes = globalNumber)
+  globalTest
 }
 
 # Local Network Null Model
 if (localModel) {
   localTest <- localNullModel(netboxGraph = results$netboxGraph, iterations = localIterations)
+  localTest
 }
 
 ## Output
 # Plot the edge annotated graph
 if (networkPlot) {
-  
+
   edges <- results$netboxOutput
   interactionType <- unique(edges[, 2])
   interactionTypeColor <- brewer.pal(length(interactionType), name = "Spectral")
@@ -101,7 +104,7 @@ if (networkPlot) {
   plot(results$netboxCommunity, netboxGraphAnnotated, layout = graph_layout,
        vertex.size = 10, vertex.shape = V(netboxGraphAnnotated)$shape, edge.color
        = E(netboxGraphAnnotated)$interactionColor, edge.width = 3)
-  
+
   # Add interaction type annotations
   legend(x = -1.8, y = -1, legend = interactionType, col =
            interactionTypeColor, lty = 1, lwd = 2, bty = "n", cex = 1)
@@ -132,7 +135,7 @@ if (neighborList) {
 
 #Save identified pathway module numbers
 if (modmem) {
-  write.table(results$moduleMembership, file = "community.membership.txt", sep = "\t",
+ write.table(results$moduleMembership, file = "community.membership.txt", sep = "\t",
               quote = FALSE, col.names = FALSE, row.names = FALSE)
 }
 
@@ -141,5 +144,5 @@ if (nt) {
   write.table(results$nodeType, file = "nodeType.txt", sep = "\t", quote = FALSE, col.names = FALSE,
               row.names = FALSE)
 }
-#sink(NULL)
+sink(NULL)
 #close(zz)
