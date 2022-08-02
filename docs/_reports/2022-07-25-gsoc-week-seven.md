@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Six | Advanced Galaxy tool development"
+title:  "Week Seven | Advanced Galaxy tool development"
 tags: gsoc
 author: Sara J
 ---
