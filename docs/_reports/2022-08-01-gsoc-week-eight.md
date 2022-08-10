@@ -71,9 +71,11 @@ head(dat_stringdb_info)
 
 tmp_dat <- dat_stringdb
 
-tmp_dat_stringdb <- merge(tmp_dat, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], by.x = "protein1", by.y="#string_protein_id")
+tmp_dat_stringdb <- merge(tmp_dat, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], 
+                          by.x = "protein1", by.y="#string_protein_id")
 colnames(tmp_dat_stringdb)[colnames(tmp_dat_stringdb) == "preferred_name"] <- "protein1_symbol"
-tmp_dat_stringdb <- merge(tmp_dat_stringdb, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], by.x = "protein2", by.y="#string_protein_id")
+tmp_dat_stringdb <- merge(tmp_dat_stringdb, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], 
+                          by.x = "protein2", by.y="#string_protein_id")
 colnames(tmp_dat_stringdb)[colnames(tmp_dat_stringdb) == "preferred_name"] <- "protein2_symbol"
 tmp_dat_stringdb[,13] = paste(tmp_dat_stringdb[,11], tmp_dat_stringdb[,12], sep = "")
 
@@ -85,7 +87,8 @@ netbox2010_network[,5] <- paste(netbox2010_network[,1], netbox2010_network[,3], 
 netbox2010_network[,6] <- seq(1:nrow(netbox2010_network))
 
 
-tmp_dat_stringdb_netbox2010 <- merge(netbox2010_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], by.x = "V5", by.y= "V13", all.x = TRUE)
+tmp_dat_stringdb_netbox2010 <- merge(netbox2010_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], 
+                                     by.x = "V5", by.y= "V13", all.x = TRUE)
 colnames(tmp_dat_stringdb_netbox2010)[colnames(tmp_dat_stringdb_netbox2010) == "combined_score"] <- "weights"
 
 duplicates <- tmp_dat_stringdb_netbox2010[duplicated(tmp_dat_stringdb_netbox2010$V6),]
@@ -127,7 +130,8 @@ pathway_commons_network <- pathway_commons_v8_reactome$network
 pathway_commons_network[,4] <- paste(pathway_commons_network[,1], pathway_commons_network[,3], sep = "")
 pathway_commons_network[,5] <- seq(1:nrow(pathway_commons_network))
 
-tmp_dat_stringdb_pathway_commons <- merge(pathway_commons_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], by.x = "V4", by.y= "V13", all.x = TRUE)
+tmp_dat_stringdb_pathway_commons <- merge(pathway_commons_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], 
+                                          by.x = "V4", by.y= "V13", all.x = TRUE)
 colnames(tmp_dat_stringdb_pathway_commons)[colnames(tmp_dat_stringdb_pathway_commons) == "combined_score"] <- "weights"
 
 
