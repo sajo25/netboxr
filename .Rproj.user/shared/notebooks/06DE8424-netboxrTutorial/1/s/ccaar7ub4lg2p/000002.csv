@@ -1,0 +1,34 @@
+"0","library(paxtoolsr)
+
+filename <- \"PathwayCommons.8.reactome.EXTENDED_BINARY_SIF.hgnc.txt.gz\"
+sif <- downloadPc2(filename, version=\"8\")
+
+
+# Filter interactions for specific types
+interactionTypes <- getSifInteractionCategories()
+
+filteredSif <- filterSif(sif$edges, interactionTypes=interactionTypes[[\"BetweenProteins\"]])
+filteredSif <- filteredSif[(filteredSif$INTERACTION_TYPE %in% \"in-complex-with\"), ]
+
+# Re-run NetBox algorithm with new network
+graphReduced <- networkSimplify(filteredSif, directed=FALSE)      
+geneList <- as.character(netbox2010$geneList) 
+
+threshold <- 0.05
+pcResults <- geneConnector(geneList=geneList,
+                          networkGraph=graphReduced,
+                           directed=FALSE,
+                           pValueAdj=\"BH\",
+                           pValueCutoff=threshold,
+                           communityMethod=\"lec\",
+                           keepIsolatedNodes=FALSE)
+
+# Check the p-value of the selected linker
+linkerDF <- results$neighborData
+linkerDF[linkerDF$pValueFDR<threshold,]
+
+# The geneConnector function returns a list of data frames. 
+names(results)
+
+# plot graph with the Fruchterman-Reingold layout algorithm
+plot(results$netboxCommunity,results$netboxGraph, layout=layout_with_fr) "

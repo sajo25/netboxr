@@ -1,0 +1,13 @@
+"0","# Write results for further visilaztion in the cytoscape software. 
+#
+# network.sif file is the NetBox algorithm output in SIF format.  
+write.table(results$netboxOutput, file=\"network.sif\", sep=\"\t\", quote=FALSE, col.names=FALSE, row.names=FALSE)
+#
+# netighborList.txt file contains the information of all neighbor nodes. 
+write.table(results$neighborData, file=\"neighborList.txt\", sep=\"\t\", quote=FALSE, col.names=TRUE, row.names=FALSE)
+#
+# community.membership.txt file indicates the identified pathway module numbers.
+write.table(results$moduleMembership, file=\"community.membership.txt\", sep=\"\t\", quote=FALSE, col.names=FALSE, row.names=FALSE)
+#
+# nodeType.txt file indicates the node is \"linker\" node or \"candidate\" node. 
+write.table(results$nodeType,file=\"nodeType.txt\", sep=\"\t\", quote=FALSE, col.names=FALSE, row.names=FALSE)"

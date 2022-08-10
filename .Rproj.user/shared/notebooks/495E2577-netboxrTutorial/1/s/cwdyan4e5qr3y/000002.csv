@@ -1,0 +1,8 @@
+"0","```r
+```r
+```r
+geneList <- as.character(netbox2010$geneList) 
+length(geneList)
+```
+```
+```"
