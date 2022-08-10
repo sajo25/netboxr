@@ -105,27 +105,35 @@ pValueCutoff = threshold,  communityMethod = "leiden", resolutionParam = 2, keep
 The graphs I obtained can be found below:
 
 **Louvain, resolution = 1**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822369-4a9a2702-e26a-48a4-a9f4-e33a416ac78e.png" width = "400" height = "400">
 
 **Louvain, resolution = 2**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822380-2ffc2661-c1a0-4a03-b1d9-48ad9cc8c076.png" width = "400" height = "400">
 
 **Louvain, resolution = 3**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822704-d3239a06-e2b6-426e-a8cf-8bfb3278f332.png" width = "400" height = "400">
 
 **Louvain, resolution = 5**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822716-0556da05-1ea9-4c1e-89ef-ee673c7ea0b5.png" width = "400" height = "400">
 
 **Louvain, resolution = 10**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822727-a6af2c56-3d7a-4691-95d6-aaed9c46d686.png" width = "400" height = "400">
 
 **Louvain, resolution = 20**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822733-f2ad7571-c13c-4023-8bfc-060f62aa23f8.png" width = "400" height = "400">
 
 **Louvain, resolution = 100**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822879-567cad76-a016-4ce0-bc73-2515ccaa701b.png" width = "400" height = "400">
 
 **Louvain, resolution = 500**
+
 <img src = "https://user-images.githubusercontent.com/28693536/175822965-23c4cc9e-4f13-4a5e-8229-5f3cdd370703.png" width = "400" height = "400">
 
 Using the following R code:
@@ -137,16 +145,20 @@ table(results$moduleMembership$membership)
 I was able to observe that the number of communities does indeed change as the resolution increases (even when it may not be apparent in the graphs), indicating that the parameter is being implemented as expected. The tables for communities (top row) and number of members (bottom row) of the networks generated using resolution values 1, 2, 3, and 5 can be found in the figures below. The maximum number of communities for this network appears to be 72.
 
 **Louvain, resolution = 1**
-<img src = "https://user-images.githubusercontent.com/28693536/175823401-a89a3c8f-0df7-486a-9e41-87b280ba8117.png">
+
+<img src = "https://user-images.githubusercontent.com/28693536/175823401-a89a3c8f-0df7-486a-9e41-87b280ba8117.png" width = "400" height = "100">
 
 **Louvain, resolution = 2**
-<img src = "https://user-images.githubusercontent.com/28693536/175823405-26a5f81c-834c-4685-b01b-8c01d0b2b8f6.png">
+
+<img src = "https://user-images.githubusercontent.com/28693536/175823405-26a5f81c-834c-4685-b01b-8c01d0b2b8f6.png" width = "400" height = "100">
 
 **Louvain, resolution = 3**
-<img src = "https://user-images.githubusercontent.com/28693536/175823407-f86673e1-6174-4c0f-9fbc-e845318eb537.png">
+
+<img src = "https://user-images.githubusercontent.com/28693536/175823407-f86673e1-6174-4c0f-9fbc-e845318eb537.png" width = "400" height = "100">
 
 **Louvain, resolution = 5**
-<img src = "https://user-images.githubusercontent.com/28693536/175823408-3c2e5b61-b439-4b60-8e1c-f20ce7b1f63b.png">
+
+<img src = "https://user-images.githubusercontent.com/28693536/175823408-3c2e5b61-b439-4b60-8e1c-f20ce7b1f63b.png" width = "400" height = "100">
 
 The Leiden method consistently outputs a network with 72 communities regardless of which resolution parameter is used in the geneConnector function. In line with this, I’m still trying to figure out what may be going wrong. I will most likely try to use the cgsdr data to test this clustering method further.
 
