@@ -24,8 +24,8 @@ author: Sara J
 
       1f. [Fix: Namespace in Imports field not imported from: 'gtools'](https://github.com/mil2041/netboxr/issues/16)
         
-2. **Make detailed plan for Galaxy tool interface**
-    Status: **In progress**
+2. **Make plan for Galaxy tool interface**
+    Status: **Complete**
     Branch: **None**
     PR: **None** 
         
@@ -215,7 +215,6 @@ Rscript.exe galaxy_r.R --geneList "genes.txt" --cutoff 0.05 --communityMethod "e
 ```
 
 **Remaining tasks**
-- Weekly email for report?
 - On Monday, ask supervisors whether Go Analysis should be part of Galaxy tool
 - Writing examples/tests for Louvain and Leiden community detection methods, and resolution and weights parameters
 - Does R output show up anywhere on Galaxy? 
