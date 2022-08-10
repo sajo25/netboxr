@@ -12,8 +12,8 @@ author: Sara J
     Branch: **None**
     PR: **None** 
     
-2. **Initiate (third) PR for netboxr ToolShed upload**
-    Status: **In progress**
+2. **[Initiate (third) PR for netboxr ToolShed upload](https://github.com/bgruening/galaxytools/pull/1233)**
+    Status: **Complete**
     Branch: **None**
     PR: **None** 
     
