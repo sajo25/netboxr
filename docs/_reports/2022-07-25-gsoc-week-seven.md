@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Seven | PR for ToolShed upload"
+title:  "Week Seven | PR and automated tests for netboxr ToolShed upload"
 tags: gsoc
 author: Sara J
 ---
