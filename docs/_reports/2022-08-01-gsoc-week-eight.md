@@ -23,7 +23,7 @@ author: Sara J
     PR: **None** 
     
 4. **Initiate PR with parent repository to merge netboxr updates**
-    Status: **In progress**
+    Status: **[Complete](https://github.com/mil2041/netboxr/pull/38)**
     Branch: **None**
     PR: **None**     
              
