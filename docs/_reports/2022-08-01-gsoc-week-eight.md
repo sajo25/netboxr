@@ -34,74 +34,131 @@ author: Sara J
 
 ## Progress report
 
+```
+library(readr)
+library(netboxr)
 
-**netbox2010 | ebc | no weights**
+# PARAMETERS ----
+stringdb_dir <- "C:/Users/s_ara/Downloads/9606.protein.links.detailed.v11.5.txt"
+stringdb_dir2 <- "C:/Users/s_ara/Downloads/9606.protein.info.v11.5.txt/"
 
-<img src = "https://user-images.githubusercontent.com/28693536/183611475-1f58710c-57fb-40da-b18c-ea6a4ae20b20.png" width = "400" height = "400">
-
-**netbox2010 | ebc | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183639956-cdb6f9e2-a27c-4a7f-9461-e20b3165f37b.png" width = "400" height = "400">
-
-**netbox2010 | lec | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611500-d653f99c-f459-4024-8a8f-cec772aafe80.png" width = "400" height = "400">
-
-**netbox2010 | lec | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183639981-efb99468-60d8-4405-9a7e-5734e892f3f9.png" width = "400" height = "400">
-
-**netbox2010 | Louvain | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183497756-19b01e90-ef2b-4509-98b5-3bbb88b112b5.png" width = "400" height = "400">
-
-**netbox2010 | Louvain | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498097-4bf00407-b3ec-4aaa-acef-5548bcddbea7.png" width = "400" height = "400">
-
-**netbox2010 | Leiden | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498243-2082186f-1056-405b-9bf9-04174b8616cf.png" width = "400" height = "400">
-
-**netbox2010 | Leiden | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498266-41690f72-59fa-456c-b12a-e8732ef46c06.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | ebc | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611527-3397fae8-64b1-43d2-ac9c-6ab77169d470.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | ebc | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183640017-149799b0-15d9-48e8-8633-f309f3c2b85d.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | lec | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611535-62f38a41-78ff-4c08-b164-7f5c56ec41fd.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | lec | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183640032-1ecc1686-a438-4b35-8162-f2da951431ae.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | Louvain | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498313-4a1a3536-fb13-4d82-b025-7b9f159d8da5.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | Louvain | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498353-0cdc7769-a9fe-43c8-824c-23ae71ae9c5b.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | Leiden | no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498370-93ed7b64-d206-4444-a59d-101780d95cfd.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome | Leiden | weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498386-ce6d29dd-a0df-41ee-9c93-907bb61da128.png" width = "400" height = "400">
+# DATA ----
+## Read Interactions
+# From: https://string-db.org/cgi/download?species_text=Homo+sapiens
+dat_stringdb <- read_delim(file.path(stringdb_dir, "9606.protein.links.detailed.v11.5.txt"), delim=" ", col_types = cols(
+  protein1 = col_character(),
+  protein2 = col_character(),
+  neighborhood = col_double(),
+  fusion = col_double(),
+  cooccurence = col_double(),
+  coexpression = col_double(),
+  experimental = col_double(),
+  database = col_double(),
+  textmining = col_double(),
+  combined_score = col_double()
+))
+head(dat_stringdb)
 
 
-Remaining tasks for Galaxy tool development (list not exhaustive):
-- Adding missing parameters (resolution, weights, etc.)
-- Adding Pathway Commons network
-- Adding option for users to upload their own network
-- Improving help section (XML tool)
+## Read Mapping Information
+dat_stringdb_info <- read_tsv(file.path(stringdb_dir2, "9606.protein.info.v11.5.txt"), col_types=cols(
+  `#string_protein_id` = col_character(),
+  preferred_name = col_character(),
+  protein_size = col_double(),
+  annotation = col_character()
+))
+head(dat_stringdb_info)
+
+tmp_dat <- dat_stringdb
+
+tmp_dat_stringdb <- merge(tmp_dat, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], by.x = "protein1", by.y="#string_protein_id")
+colnames(tmp_dat_stringdb)[colnames(tmp_dat_stringdb) == "preferred_name"] <- "protein1_symbol"
+tmp_dat_stringdb <- merge(tmp_dat_stringdb, dat_stringdb_info[, c("#string_protein_id", "preferred_name")], by.x = "protein2", by.y="#string_protein_id")
+colnames(tmp_dat_stringdb)[colnames(tmp_dat_stringdb) == "preferred_name"] <- "protein2_symbol"
+tmp_dat_stringdb[,13] = paste(tmp_dat_stringdb[,11], tmp_dat_stringdb[,12], sep = "")
+
+
+# netbox2010
+
+netbox2010_network <- netbox2010$network
+netbox2010_network[,5] <- paste(netbox2010_network[,1], netbox2010_network[,3], sep = "")
+netbox2010_network[,6] <- seq(1:nrow(netbox2010_network))
+
+
+tmp_dat_stringdb_netbox2010 <- merge(netbox2010_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], by.x = "V5", by.y= "V13", all.x = TRUE)
+colnames(tmp_dat_stringdb_netbox2010)[colnames(tmp_dat_stringdb_netbox2010) == "combined_score"] <- "weights"
+
+duplicates <- tmp_dat_stringdb_netbox2010[duplicated(tmp_dat_stringdb_netbox2010$V6),]
+duplicates <- as.numeric(rownames(duplicates))
+tmp_dat_stringdb_netbox2010 <- tmp_dat_stringdb_netbox2010[-duplicates,]
+
+tmp_dat_stringdb_netbox2010 <- tmp_dat_stringdb_netbox2010[order(tmp_dat_stringdb_netbox2010$V6),]
+
+tmp_dat_stringdb_netbox2010 <- tmp_dat_stringdb_netbox2010[,c("V1", "V2", "V3", "V4", "weights")]
+
+for (i in 1:nrow(netbox2010_network)) {
+  original <- paste(netbox2010_network[i,1], 
+                    netbox2010_network[i,2],
+                    netbox2010_network[i,3],
+                    netbox2010_network[i,4], sep = "") 
+  second <- paste(tmp_dat_stringdb_netbox2010[i,1],
+                  tmp_dat_stringdb_netbox2010[i,2],
+                  tmp_dat_stringdb_netbox2010[i,3],
+                  tmp_dat_stringdb_netbox2010[i,4], sep = "")
+  if (original != second) {
+    print(i)
+    break
+  }
+}
+
+na_mask <- is.na(tmp_dat_stringdb_netbox2010$weights)
+tmp_dat_stringdb_netbox2010$weights[na_mask] <- 1
+netbox2010_weights_vector <- tmp_dat_stringdb_netbox2010$weights
+
+netbox2010_weights <- netbox2010
+netbox2010_weights$network[,5] <- netbox2010_weights_vector
+colnames(netbox2010_weights$network)[colnames(netbox2010_weights$network) == "V5"] <- "weights"
+save(netbox2010_weights, file = "netbox2010_weights.rda")
+
+
+# pathway_commons_v8_reactome
+
+pathway_commons_network <- pathway_commons_v8_reactome$network
+pathway_commons_network[,4] <- paste(pathway_commons_network[,1], pathway_commons_network[,3], sep = "")
+pathway_commons_network[,5] <- seq(1:nrow(pathway_commons_network))
+
+tmp_dat_stringdb_pathway_commons <- merge(pathway_commons_network, tmp_dat_stringdb[, c("protein1", "protein2", "combined_score", "V13")], by.x = "V4", by.y= "V13", all.x = TRUE)
+colnames(tmp_dat_stringdb_pathway_commons)[colnames(tmp_dat_stringdb_pathway_commons) == "combined_score"] <- "weights"
+
+
+duplicates <- tmp_dat_stringdb_pathway_commons[duplicated(tmp_dat_stringdb_pathway_commons$V5),]
+duplicates <- as.numeric(rownames(duplicates))
+tmp_dat_stringdb_pathway_commons <- tmp_dat_stringdb_pathway_commons[-duplicates,]
+
+tmp_dat_stringdb_pathway_commons <- tmp_dat_stringdb_pathway_commons[order(tmp_dat_stringdb_pathway_commons$V5),]
+
+tmp_dat_stringdb_pathway_commons <- tmp_dat_stringdb_pathway_commons[,c("PARTICIPANT_A", "INTERACTION_TYPE", "PARTICIPANT_B", "weights")]
+
+
+for (i in 1:nrow(pathway_commons_network)) {
+  original <- paste(pathway_commons_network[i,1], 
+                    pathway_commons_network[i,2],
+                    pathway_commons_network[i,3], sep = "") 
+  second <- paste(tmp_dat_stringdb_pathway_commons[i,1],
+                  tmp_dat_stringdb_pathway_commons[i,2],
+                  tmp_dat_stringdb_pathway_commons[i,3], sep = "")
+  if (original != second) {
+    print(i)
+    break
+  }
+}
+
+na_mask <- is.na(tmp_dat_stringdb_pathway_commons$weights)
+tmp_dat_stringdb_pathway_commons$weights[na_mask] <- 1
+pathway_commons_weights_vector <- tmp_dat_stringdb_pathway_commons$weights
+
+pathway_commons_v8_reactome_weights <- pathway_commons_v8_reactome
+pathway_commons_v8_reactome_weights$network[,4] <- pathway_commons_weights_vector
+colnames(pathway_commons_v8_reactome_weights$network)[colnames(pathway_commons_v8_reactome_weights$network) == "V4"] <- "weights"
+save(pathway_commons_v8_reactome_weights, file = "pathway_commons_v8_reactome_weights.rda")
+```
