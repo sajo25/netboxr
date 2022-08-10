@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Seven | Advanced Galaxy tool development"
+title:  "Week Seven | PR for ToolShed upload"
 tags: gsoc
 author: Sara J
 ---
