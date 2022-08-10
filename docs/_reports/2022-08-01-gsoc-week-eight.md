@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Eight | Testing weights for module stability"
+title:  "Week Eight | Adding weights parameter to geneConnector function"
 tags: gsoc
 author: Sara J
 ---
