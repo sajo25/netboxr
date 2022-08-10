@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Six | Advanced Galaxy tool development"
+title:  "Week Six | Docker for netboxr Galaxy tool installation"
 tags: gsoc
 author: Sara J
 ---
