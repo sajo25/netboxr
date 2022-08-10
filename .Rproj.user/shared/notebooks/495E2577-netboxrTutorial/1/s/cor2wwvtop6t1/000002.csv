@@ -1,2 +1,0 @@
-"0","## This function will need a lot of time to complete. 
-globalTest <- globalNullModel(netboxGraph=results$netboxGraph, networkGraph=graphReduced, iterations=10, numOfGenes = 274)"
