@@ -38,6 +38,3 @@ Mentors:
     Status: **In progress**
     Branch: **None**
         PR: **None**
-
-## Conclusion
-FIXME
