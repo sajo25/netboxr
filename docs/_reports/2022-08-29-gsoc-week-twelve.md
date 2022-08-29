@@ -7,26 +7,26 @@ author: Sara J
 
 ## Tasks
         
-1. **[Testing weights for module stability](https://github.com/mil2041/netboxr/issues/36)**
+1. **Make netboxr Galaxy tool demo**
     Status: **In progress**
     Branch: **None**
     PR: **None** 
     
-2. **[Initiate (third) PR for netboxr ToolShed upload](https://github.com/bgruening/galaxytools/pull/1233)**
+2. **[Try module stability analysis using new networks](https://github.com/mil2041/netboxr/issues/44)**
     Status: **Complete**
     Branch: **None**
     PR: **None** 
     
-3. **Fix issues with netboxr tests**
+3. **Finalize and commit netboxr tests**
     Status: **In progress**
     Branch: **None**
     PR: **None** 
     
-4. **Initiate PR with parent repository to merge netboxr updates**
+4. **[Add more features to netboxr Galaxy tool](https://github.com/mil2041/netboxr/issues/39)**
     Status: **In progress**
     Branch: **None**
-    PR: **None**     
-             
+    PR: **None**    
+                    
 5. **Meeting with supervisors**
     Status: **Thursday**
     Branch: **None**
