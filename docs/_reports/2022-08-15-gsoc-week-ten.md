@@ -12,7 +12,7 @@ author: Sara J
     Branch: **None**
     PR: **None** 
     
-2. **[Initiate (third) PR for netboxr ToolShed upload](https://github.com/bgruening/galaxytools/pull/1233)**
+2. **Remove r-optparse from netboxr Galaxy tool dependencies**
     Status: **Complete**
     Branch: **None**
     PR: **None** 
