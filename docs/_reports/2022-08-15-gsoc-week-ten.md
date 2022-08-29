@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Week Nine | Testing weights for module stability"
+title:  "Week Ten | netboxr package maintenence"
 tags: gsoc
 author: Sara J
 ---
 
 ## Tasks
         
-1. **[Testing weights for module stability](https://github.com/mil2041/netboxr/issues/36)**
+1. **[Replace cgdsr with cBioPortalData package in netboxr vignette](https://github.com/mil2041/netboxr/issues/14)**
     Status: **In progress**
     Branch: **None**
     PR: **None** 
@@ -17,94 +17,63 @@ author: Sara J
     Branch: **None**
     PR: **None** 
     
-3. **Fix issues with netboxr tests**
-    Status: **In progress**
-    Branch: **None**
-    PR: **None** 
-    
-4. **Initiate PR with parent repository to merge netboxr updates**
-    Status: **In progress**
-    Branch: **None**
-    PR: **None**     
-             
-5. **Meeting with supervisors**
-    Status: **Thursday**
-    Branch: **None**
-    PR: **None** 
 
 ## Progress report
 
+I wrote the following code to calculate the alteration frequency using the cBioPortalData package in place of cgdsr.
 
-**netbox2010, ebc, no weights**
+```
+library(cBioPortalData)
+cbio <- cBioPortal(hostname = "www.cbioportal.org", protocol = "https", api. = "/api/api-docs")
 
-<img src = "https://user-images.githubusercontent.com/28693536/183611475-1f58710c-57fb-40da-b18c-ea6a4ae20b20.png" width = "400" height = "400">
+# Find available studies, caselists, and geneticProfiles 
+studies <- getStudies(cbio)
+caselists <- sampleLists(cbio, "gbm_tcga_pub")[, c("name", "sampleListId")]
+geneticProfiles <- molecularProfiles(api = cbio, studyId = "gbm_tcga_pub")
+geneticProfiles <- geneticProfiles$molecularProfileId
 
-**netbox2010, ebc, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183639956-cdb6f9e2-a27c-4a7f-9461-e20b3165f37b.png" width = "400" height = "400">
-
-**netbox2010, lec, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611500-d653f99c-f459-4024-8a8f-cec772aafe80.png" width = "400" height = "400">
-
-**netbox2010, lec, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183639981-efb99468-60d8-4405-9a7e-5734e892f3f9.png" width = "400" height = "400">
-
-**netbox2010, Louvain, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183497756-19b01e90-ef2b-4509-98b5-3bbb88b112b5.png" width = "400" height = "400">
-
-**netbox2010, Louvain, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498097-4bf00407-b3ec-4aaa-acef-5548bcddbea7.png" width = "400" height = "400">
-
-**netbox2010, Leiden, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498243-2082186f-1056-405b-9bf9-04174b8616cf.png" width = "400" height = "400">
-
-**netbox2010, Leiden, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498266-41690f72-59fa-456c-b12a-e8732ef46c06.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, ebc, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611527-3397fae8-64b1-43d2-ac9c-6ab77169d470.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, ebc, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183640017-149799b0-15d9-48e8-8633-f309f3c2b85d.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, lec, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183611535-62f38a41-78ff-4c08-b164-7f5c56ec41fd.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, lec, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183640032-1ecc1686-a438-4b35-8162-f2da951431ae.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, Louvain, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498313-4a1a3536-fb13-4d82-b025-7b9f159d8da5.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, Louvain, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498353-0cdc7769-a9fe-43c8-824c-23ae71ae9c5b.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, Leiden, no weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498370-93ed7b64-d206-4444-a59d-101780d95cfd.png" width = "400" height = "400">
-
-**pathway_commons_v8_reactome, Leiden, weights**
-
-<img src = "https://user-images.githubusercontent.com/28693536/183498386-ce6d29dd-a0df-41ee-9c93-907bb61da128.png" width = "400" height = "400">
-
-
-I made changes to the netboxr Galaxy tool based on feedback from the last [PR](https://github.com/bgruening/galaxytools/pull/1230), including XML file formatting, error detection, adding categories as well as a longer description to the .shed.yml file, and others ([commit](https://github.com/mil2041/netboxr/commit/51c3fb7ce356eb3326efc0d037702730473d838b#diff-c2558444c84546f3b72e3862741f940b7e54f2243dca7ad14424598714b2184a) - I accidentally commited the .Rproject and .Rhistory files as well, but deleted them later on.). Following this, I initiated another (and hopefully final) [PR](https://github.com/bgruening/galaxytools/pull/1233).
-
-
-Remaining tasks for Galaxy tool development (list not exhaustive):
-- Adding missing parameters (resolution, weights, etc.)
-- Adding Pathway Commons network
-- Adding option for users to upload their own network
-- Improving help section (XML tool)
+genes <- c("EGFR", "TP53", "ACTB", "GAPDH")
+geneticProfiles <- c("gbm_tcga_pub_cna_consensus", "gbm_tcga_pub_mutations")
+caseList <- "gbm_tcga_pub_cnaseq"
+  
+results <- sapply(genes, function(gene) {
+  
+  error_detect <- suppressWarnings(try(getDataByGenes(cbio, studyId = "gbm_tcga_pub", 
+                                      genes = gene, by = "hugoGeneSymbol",
+                                      molecularProfileId = "gbm_tcga_pub_mutations",
+                                      sampleListId = caseList)))
+  
+  cna <- getDataByGenes(
+  cbio, studyId = "gbm_tcga_pub", 
+  genes = gene,
+  by = "hugoGeneSymbol",
+  molecularProfileId = "gbm_tcga_pub_cna_consensus",
+  sampleListId = caseList)
+  
+  if ("try-error" %in% class(error_detect) | length(cna) == 0) {
+    length(NULL)
+  } else {
+  
+  mut <- getDataByGenes(
+  cbio, studyId = "gbm_tcga_pub", 
+  genes = gene,
+  by = "hugoGeneSymbol",
+  molecularProfileId = "gbm_tcga_pub_mutations",
+  sampleListId = caseList)
+  
+  cna <- cbind(cna[[1]][5], cna[[1]][8])
+  mut <- cbind(mut[[1]][4], mut[[1]][14])
+  dat <- merge(cna, mut, by = "sampleId", all = TRUE)
+  
+  cna <- dat$value
+  
+  mut <- dat$proteinChange
+  
+  tmp <- data.frame(cna=cna, mut=mut, stringsAsFactors = FALSE)
+  tmp$isAltered <- abs(tmp$cna) == 2 | !is.na(tmp$mut) # Amplification or Deep Deletion or any mutation
+  length(which(tmp$isAltered))/nrow(tmp)
+  } 
+  }, USE.NAMES = TRUE)
+# 10 percent alteration frequency cutoff 
+geneList <- names(results)[results > 0.1]
+```
