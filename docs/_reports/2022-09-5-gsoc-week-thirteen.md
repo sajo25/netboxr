@@ -16,3 +16,15 @@ author: Sara J
     Status: **Complete**
     Branch: **None**
     PR: **None** 
+
+3. **Initiate PR with parent repository to merge netboxr updates**
+    Status: **In progress**
+    Branch: **None**
+    PR: **None**   
+    
+ 4. **Submit final GSoC work product**
+    Status: **In progress**
+    Branch: **None**
+    PR: **None**     
+             
+             
