@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week Twelve | Final tasks"
+title:  "Week Twelve | Final tasks and documentation"
 tags: gsoc
 author: Sara J
 ---
