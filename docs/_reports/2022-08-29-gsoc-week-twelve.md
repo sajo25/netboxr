@@ -25,10 +25,30 @@ author: Sara J
 4. **[Add more features to netboxr Galaxy tool](https://github.com/mil2041/netboxr/issues/39)**
     Status: **In progress**
     Branch: **None**
-    PR: **None**    
+    PR: **None**
+    
+5. **[Make remap_cluster_labels a new function](https://github.com/mil2041/netboxr/issues/43)**
+    Status: **In progress**
+    Branch: **None**
+    PR: **None** 
+    
+6. **[Make separate vignettes for resolution and weight features](https://github.com/mil2041/netboxr/issues/42)**
+    Status: **Complete**
+    Branch: **None**
+    PR: **None** 
+
+7. **Initiate PR with parent repository to merge netboxr updates**
+    Status: **In progress**
+    Branch: **None**
+    PR: **None**   
                     
-5. **Meeting with supervisors**
+8. **Meeting with supervisors**
     Status: **Thursday**
     Branch: **None**
     PR: **None** 
+    
+9. **Submit final GSoC work product**
+   Status: **In progress**
+   Branch: **None**
+   PR: **None**     
 
