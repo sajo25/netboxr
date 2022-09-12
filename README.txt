@@ -1,15 +1,13 @@
-**Community detection method**
-Community detection methods include edge betweenness score (EBC), leading eigenvector method (LEC), Louvain method (LOUV), or Leiden method (LEID).
+Steps to upload Galaxy tool to ToolShed:
 
-**Global network null model**
-Perform global network null model analysis. The global network null model calculates the empirical p-value as the number of times (over a set of iterations) the size of the largest connected component (the giant component) in the network coming from the same number of randomly selected genes equals or exceeds the size of the largest connected component in the observed network.
+0. Read [instructions](https://github.com/bgruening/galaxytools)
+1. Fork (and clone) one of the galaxytools repositories mentioned in [instructions](https://github.com/bgruening/galaxytools)
+2. Make a new branch named after your tool as per [recommendations](https://github.com/bgruening/galaxytools/blob/6a2deb2f38472a2845123bd54e73b6bd115b3a0b/CONTRIBUTING.md)
+3. `git checkout -b branch-name`
+5. Copy and paste tool development folder to the galaxytools/tools directory
+6. `git add -all`
+7. `git commit -u -m "message"`
+8. `git push origin branch name`
+9. [Pull request](https://github.com/bgruening/galaxytools/pull/1229) (linked previously)
 
-**Global network null model number of genes**
-
-**Local network null model**
-Perform local network null model analysis. The local network null model evaluates the deviation of modularity in the observed network from modularity distribution in the random network.
-
-**Local network null model iterations**
-Local network null model iterations
-
-Network plot" help="Output the annotated graph of netboxr output.
+The pull request initiates automated tests. After the tool passes the tests and the PR is merged, it is automatically pushed to the Galaxy ToolShed, after which it can be installed in every Galaxy instance.
