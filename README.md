@@ -1,6 +1,6 @@
 Steps to upload Galaxy tool to ToolShed:
 
-0. Read [zinstructions](https://github.com/bgruening/galaxytools)
+0. Read [instructions](https://github.com/bgruening/galaxytools)
 1. Fork (and clone) one of the galaxytools repositories mentioned in [instructions](https://github.com/bgruening/galaxytools)
 2. Make a new branch named after your tool as per [recommendations](https://github.com/bgruening/galaxytools/blob/6a2deb2f38472a2845123bd54e73b6bd115b3a0b/CONTRIBUTING.md)
 3. `git checkout -b branch-name`
