@@ -5,11 +5,20 @@ tags: gsoc
 author: Sara J
 ---
 
-Repositories I worked on:
+Repositories I worked in:
+
+mil2041/netboxr https://github.com/mil2041/netboxr
+
+sajo25/netboxr https://github.com/sajo25/netboxr/tree/master
+
+bgruening/galaxytools https://github.com/bgruening/galaxytools
 
 
 Pull requests:
 
+GSoC netboxr Algorithm Updates and Maintenance https://github.com/mil2041/netboxr/pull/48
+
+Add netboxr tool (beta version) - third attempt https://github.com/bgruening/galaxytools/pull/1233
 
 
 
